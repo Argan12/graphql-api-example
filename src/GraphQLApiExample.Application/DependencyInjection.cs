@@ -1,18 +1,16 @@
-﻿using FluentValidation;
-using GraphQLApiExample.Application.Common.Behaviours;
-using MediatR;
+﻿using GraphQLApiExample.Application.Features.User.Handlers.Mutations;
+using GraphQLApiExample.Application.Features.User.Handlers.Queries;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace GraphQLApiExample.Application
 {
     public static class DependencyInjection
     {
-        public static void ConfigureApplication(this IServiceCollection services)
+        public static void AddHandlers(this IServiceCollection services)
         {
-            services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            // User resources
+            services.AddScoped<UserMutationHandler>();
+            services.AddScoped<UserQueryHandler>();
         }
     }
 }

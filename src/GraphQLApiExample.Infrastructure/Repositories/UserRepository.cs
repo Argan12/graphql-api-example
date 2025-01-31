@@ -1,0 +1,40 @@
+﻿using UserDomain = GraphQLApiExample.Domain.Entities.User;
+using GraphQLApiExample.Infrastructure.Entities;
+using GraphQLApiExample.Infrastructure.Extensions;
+using GraphQLApiExample.Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace GraphQLApiExample.Infrastructure.Repositories
+{
+    public class UserRepository(GraphQLApiExampleDbContext context) : IUserRepository
+    {
+        private readonly GraphQLApiExampleDbContext _context = context;
+
+        /// <summary>
+        /// Save user
+        /// </summary>
+        /// <param name="user">User domain</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>User domain</returns>
+        public async Task<UserDomain> SaveUser(UserDomain user)
+        {
+            var userDbo = user.ToDbo();
+
+            _context.Add(userDbo);
+            await _context.SaveChangesAsync();
+
+            return userDbo.ToDomain();
+        }
+
+        /// <summary>
+        /// Get user by mail address
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns>User</returns>
+        public async Task<UserDomain?> GetUserByMail(string mail)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(x => x.Mail == mail);
+            return user?.ToDomain();
+        }
+    }
+}
