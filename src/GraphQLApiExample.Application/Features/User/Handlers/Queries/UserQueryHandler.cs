@@ -9,7 +9,7 @@ namespace GraphQLApiExample.Application.Features.User.Handlers.Queries
     {
         private readonly IUserRepository _userRepository = userRepository;
 
-        public async Task<UserDomain> GetUsers(GetUserByMailInput input) =>
+        public async Task<UserDomain> GetByMail(GetUserByMailInput input) =>
             await _userRepository.GetUserByMail(input.Mail) ?? throw new NotFoundException(Constants.ERR_USER_NOT_FOUND);
     }
 }
