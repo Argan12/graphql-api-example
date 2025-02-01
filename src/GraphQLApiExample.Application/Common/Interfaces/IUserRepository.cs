@@ -12,5 +12,9 @@ namespace GraphQLApiExample.Application.Common.Interfaces
         Task<User> SaveUser(User user);
 
         Task<User?> GetUserByMail(string mail);
+
+        Task<User?> GetUserById(Guid id);
+
+        Task DeleteUser(Guid id);
     }
 }

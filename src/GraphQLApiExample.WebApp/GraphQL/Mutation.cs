@@ -13,5 +13,11 @@ namespace GraphQLApiExample.WebApp.GraphQL
             var user = await handler.Save(input);
             return user.ToOutput();
         }
+
+        public async Task<bool> DeleteUser([Service] UserMutationHandler handler, DeleteUserInput input)
+        {
+            await handler.Remove(input);
+            return true;
+        }
     }
 }

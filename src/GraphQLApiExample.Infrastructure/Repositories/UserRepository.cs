@@ -27,6 +27,17 @@ namespace GraphQLApiExample.Infrastructure.Repositories
         }
 
         /// <summary>
+        /// Get user by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>User domain</returns>
+        public async Task<UserDomain?> GetUserById(Guid id)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(x => x.Id == id);
+            return user?.ToDomain();
+        }
+
+        /// <summary>
         /// Get user by mail address
         /// </summary>
         /// <param name="mail"></param>
@@ -35,6 +46,17 @@ namespace GraphQLApiExample.Infrastructure.Repositories
         {
             var user = await _context.User.FirstOrDefaultAsync(x => x.Mail == mail);
             return user?.ToDomain();
+        }
+
+        /// <summary>
+        /// Delete user by id
+        /// </summary>
+        /// <param name="id"></param>
+        public async Task DeleteUser(Guid id)
+        {
+            var user = await _context.User.SingleAsync(x => x.Id == id);
+            _context.Remove(user);
+            await _context.SaveChangesAsync();
         }
     }
 }
