@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GraphQLApiExample.Infrastructure.Entities;
 
-public partial class User
+public partial class UserDbo
 {
     public Guid Id { get; set; }
 

@@ -19,7 +19,7 @@ public partial class GraphQLApiExampleDbContext : DbContext
 
     public virtual DbSet<Comment> Comment { get; set; }
 
-    public virtual DbSet<User> User { get; set; }
+    public virtual DbSet<UserDbo> User { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -61,7 +61,7 @@ public partial class GraphQLApiExampleDbContext : DbContext
                 .HasConstraintName("FK_Comment_User");
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<UserDbo>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Mail)

@@ -1,4 +1,4 @@
-﻿using UserDbo = GraphQLApiExample.Infrastructure.Entities.User;
+﻿using UserDbo = GraphQLApiExample.Infrastructure.Entities.UserDbo;
 using UserDomain = GraphQLApiExample.Domain.Entities.User;
 
 namespace GraphQLApiExample.Infrastructure.Extensions

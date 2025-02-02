@@ -17,5 +17,5 @@ public partial class Comment
 
     public virtual Article Article { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public virtual UserDbo User { get; set; } = null!;
 }

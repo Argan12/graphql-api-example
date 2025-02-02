@@ -1,5 +1,4 @@
 ﻿using GraphQLApiExample.Application;
-using GraphQLApiExample.Application.Common.Exceptions;
 
 namespace GraphQLApiExample.WebApp.Middlewares
 {

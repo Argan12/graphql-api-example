@@ -17,5 +17,5 @@ public partial class Article
 
     public virtual ICollection<Comment> Comment { get; set; } = new List<Comment>();
 
-    public virtual User User { get; set; } = null!;
+    public virtual UserDbo User { get; set; } = null!;
 }

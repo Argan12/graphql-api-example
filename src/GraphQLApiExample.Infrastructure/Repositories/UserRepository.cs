@@ -1,8 +1,8 @@
-﻿using UserDomain = GraphQLApiExample.Domain.Entities.User;
+﻿using GraphQLApiExample.Application.Common.Interfaces;
 using GraphQLApiExample.Infrastructure.Entities;
 using GraphQLApiExample.Infrastructure.Extensions;
-using GraphQLApiExample.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using UserDomain = GraphQLApiExample.Domain.Entities.User;
 
 namespace GraphQLApiExample.Infrastructure.Repositories
 {
