@@ -10,11 +10,21 @@ namespace GraphQLApiExample.Application.Features.User.Handlers.Mutations
     {
         private readonly IUserRepository _userRepository = userRepository;
 
-        public async Task<UserDomain> Save(CreateUserInput input) => await _userRepository.SaveUser(input.ToDomain());
+        public async Task<UserDomain> Save(CreateUserInput input)
+        {
+            var user = await _userRepository.GetUserByMail(input.Mail);
+
+            if (user is not null)
+            {
+                throw new BadRequestException(Constants.ERR_MAIL_ALREADY_EXISTS);
+            }
+
+            return await _userRepository.SaveUser(input.ToDomain());
+        }
 
         public async Task Remove(DeleteUserInput input)
         {
-            var user = await _userRepository.GetUserById(input.Id) ?? throw new NotFoundException(Constants.ERR_USER_NOT_FOUND);
+            _ = await _userRepository.GetUserById(input.Id) ?? throw new NotFoundException(Constants.ERR_USER_NOT_FOUND);
             await _userRepository.DeleteUser(input.Id);
         }
     }

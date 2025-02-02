@@ -1,5 +1,7 @@
-﻿using GraphQLApiExample.Application.Features.User.Handlers.Mutations;
+﻿using FluentValidation;
+using GraphQLApiExample.Application.Features.User.Handlers.Mutations;
 using GraphQLApiExample.Application.Features.User.Handlers.Queries;
+using GraphQLApiExample.Application.Features.User.Types.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQLApiExample.Application
@@ -11,6 +13,9 @@ namespace GraphQLApiExample.Application
             // User resources
             services.AddScoped<UserMutationHandler>();
             services.AddScoped<UserQueryHandler>();
+
+            // Validators
+            services.AddValidatorsFromAssemblyContaining<CreateUserInputValidator>();
         }
     }
 }

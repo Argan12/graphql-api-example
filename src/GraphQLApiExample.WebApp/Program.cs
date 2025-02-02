@@ -1,6 +1,7 @@
 using GraphQLApiExample.Application;
 using GraphQLApiExample.Infrastructure;
 using GraphQLApiExample.WebApp.GraphQL;
+using GraphQLApiExample.WebApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,8 @@ builder.Services
     .AddGraphQLServer()
     .AddAuthorization()
     .AddQueryType<Query>()
-    .AddMutationType<Mutation>();
+    .AddMutationType<Mutation>()
+    .UseField<ValidationMiddleware>();
 
 var app = builder.Build();
 
@@ -30,6 +32,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GraphQLHttpStatusCodeMiddleware>();
 
 app.MapGraphQL();
 
