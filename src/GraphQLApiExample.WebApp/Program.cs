@@ -1,17 +1,24 @@
 using GraphQLApiExample.Application;
 using GraphQLApiExample.Infrastructure;
+using GraphQLApiExample.WebApp.GraphQL;
+using GraphQLApiExample.WebApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.ConfigureApplication();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddHandlers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddGraphQLServer().AddAuthorization();
+builder.Services
+    .AddGraphQLServer()
+    .AddAuthorization()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
+    .UseField<ValidationMiddleware>();
 
 var app = builder.Build();
 
@@ -25,6 +32,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GraphQLHttpStatusCodeMiddleware>();
 
 app.MapGraphQL();
 

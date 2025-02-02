@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using GraphQLApiExample.Application.Common.Interfaces;
+using GraphQLApiExample.Infrastructure.Entities;
+using GraphQLApiExample.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQLApiExample.Infrastructure
@@ -7,17 +11,11 @@ namespace GraphQLApiExample.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<CleanArchitectureDbContext>(options =>
-            //    options.UseSqlServer(configuration.GetConnectionString("CleanArchitectureContext"),
-            //        b => b.MigrationsAssembly(typeof(CleanArchitectureDbContext).Assembly.FullName)), ServiceLifetime.Transient);
+            services.AddDbContext<GraphQLApiExampleDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(GraphQLApiExampleDbContext).Assembly.FullName)), ServiceLifetime.Transient);
 
-            //services.AddScoped<ICleanArchitectureDbContext>(provider => provider.GetService<CleanArchitectureDbContext>());
-
-            //services.AddScoped<IAuthenticationService, AuthenticationService>();
-            //services.AddScoped<IJwtService, JwtService>();
-            //services.AddScoped<IPasswordService, PasswordService>();
-            //services.AddScoped<IArticleRepository, ArticleRepository>();
-            //services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

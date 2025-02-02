@@ -25,9 +25,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7200;http://localhost:5175",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "ConnectionStrings__DefaultConnection": "Server=localhost\\SQLEXPRESS01;Database=GraphQLApiExample;Trusted_Connection=True;TrustServerCertificate=True;"
+        }
     },
     "IIS Express": {
       "commandName": "IISExpress",

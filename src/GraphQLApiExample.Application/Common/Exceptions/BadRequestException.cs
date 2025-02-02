@@ -1,16 +1,9 @@
 ﻿namespace GraphQLApiExample.Application.Common.Exceptions
 {
-    public class BadRequestException : Exception
+    public class BadRequestException(string message) : GraphQLException(ErrorBuilder.New()
+                .SetMessage(message)
+                .SetCode(Constants.BAD_REQUEST)
+                .Build())
     {
-        public BadRequestException(string message) : base(message)
-        {
-        }
-
-        public BadRequestException(string[] errors) : base("Multiple errors occurred. See error details.")
-        {
-            Errors = errors;
-        }
-
-        public string[] Errors { get; set; }
     }
 }

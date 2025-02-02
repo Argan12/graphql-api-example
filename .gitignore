@@ -1,4 +1,5 @@
 /.vs/
+
 /src/GraphQLApiExample.Application/bin/
 /src/GraphQLApiExample.Application/obj/
 /src/GraphQLApiExample.Domain/bin/
@@ -7,3 +8,8 @@
 /src/GraphQLApiExample.Infrastructure/obj/
 /src/GraphQLApiExample.WebApp/bin/
 /src/GraphQLApiExample.WebApp/obj/
+
+/tests/GraphQLApiExample.Application.Tests/bin/
+/tests/GraphQLApiExample.Application.Tests/obj/
+/tests/GraphQLApiExample.Infrastructure.Tests/bin/
+/tests/GraphQLApiExample.Infrastructure.Tests/obj/
