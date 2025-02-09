@@ -6,7 +6,7 @@ namespace GraphQLApiExample.Application.Tests.Validators
 {
     public class CreateUserInputValidatorTests
     {
-        private readonly CreateUserInputValidator _validator;
+        private readonly ArticleInputValidator _validator;
 
         public CreateUserInputValidatorTests()
         {

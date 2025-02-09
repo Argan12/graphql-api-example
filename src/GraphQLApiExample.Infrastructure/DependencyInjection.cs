@@ -16,6 +16,7 @@ namespace GraphQLApiExample.Infrastructure
                     b => b.MigrationsAssembly(typeof(GraphQLApiExampleDbContext).Assembly.FullName)), ServiceLifetime.Transient);
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IArticleRepository, ArticleRepository>();
 
             return services;
         }

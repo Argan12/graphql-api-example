@@ -10,6 +10,7 @@ namespace GraphQLApiExample.WebApp.Middlewares
         {
             { Constants.VALIDATION_ERRORS, StatusCodes.Status400BadRequest },
             { Constants.BAD_REQUEST, StatusCodes.Status400BadRequest },
+            { Constants.UNAUTHORIZED, StatusCodes.Status401Unauthorized },
             { Constants.RESOURCE_NOT_FOUND, StatusCodes.Status404NotFound }
         };
 

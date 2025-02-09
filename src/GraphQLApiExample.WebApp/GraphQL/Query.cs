@@ -1,6 +1,9 @@
 ﻿using System.Reflection.Metadata;
 using GraphQLApiExample.Application;
 using GraphQLApiExample.Application.Common.Exceptions;
+using GraphQLApiExample.Application.Features.Articles.Handlers.Queries;
+using GraphQLApiExample.Application.Features.Articles.Types.Inputs;
+using GraphQLApiExample.Application.Features.Articles.Types.Outputs;
 using GraphQLApiExample.Application.Features.User.Handlers.Queries;
 using GraphQLApiExample.Application.Features.User.Types.Inputs;
 using GraphQLApiExample.Application.Features.User.Types.Mappings;
@@ -15,6 +18,11 @@ namespace GraphQLApiExample.WebApp.GraphQL
         {
            var user = await handler.GetByMail(input);
             return user.ToOutput();
+        }
+
+        public async Task<List<ArticleDto>> GetArticles([Service] ArticleQueryHandler handler, GetArticleInput input)
+        {
+            return await handler.GetAllArticles(input);
         }
     }
 }
